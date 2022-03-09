@@ -1,0 +1,5 @@
+[requires]
+samarium/1.0.0 # use samarium version 1.0.0 (the current stable version)
+
+[generators]
+cmake # use the default (and easiest to use) cmake config
