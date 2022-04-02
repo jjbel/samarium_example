@@ -13,14 +13,17 @@ This is a fully self-contained example project for [samarium](https://github.com
 
 ## Install and Run
 
-In a new directory,  run:
+In a new directory, run:
 
 ```sh
-git clone --depth 1 https://github.com/strangeQuark1041/samarium_example.git .
-conan install . -b missing -if ./build # Install deps in build folder
-cmake -B ./build
-cmake --build ./build
-./build/bin/example
+git clone --depth 1 https://github.com/strangeQuark1041/samarium_example.git . # Get code
+
+conan install . -b missing -if build # Install deps in build folder
+
+cmake --preset=default # Configure CMake
+cmake --build --preset=default # Compile example
+
+./build/bin/example # Run example
 ```
 
 For more details see [the library](https://github.com/strangeQuark1041/samarium/) and [the docs](https://strangequark1041.github.io/samarium_docs/)
