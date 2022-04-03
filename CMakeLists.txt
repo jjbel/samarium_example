@@ -1,6 +1,13 @@
 cmake_minimum_required(VERSION 3.16) # At least CMake-3.16 is required
 project(SamariumExample CXX) # Create Project
 
+# Get deps using Conan
+execute_process(
+    COMMAND conan install . -b missing -if build
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    OUTPUT_QUIET
+)
+
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake) # include Conan
 conan_basic_setup(TARGETS) # setup Conan
 

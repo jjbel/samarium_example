@@ -18,8 +18,6 @@ In a new directory, run:
 ```sh
 git clone --depth 1 https://github.com/strangeQuark1041/samarium_example.git . # Get code
 
-conan install . -b missing -if build # Install deps in build folder
-
 cmake --preset=default # Configure CMake
 cmake --build --preset=default # Compile example
 
