@@ -17,3 +17,8 @@ add_executable(example example.cpp) # create an example executable
 
 target_compile_features(example PUBLIC cxx_std_20) # set C++ standard
 target_link_libraries(example samarium::samarium) # use project
+
+# enable running the example with ctest
+include(CTest)
+enable_testing()
+add_test(NAME example COMMAND example)
