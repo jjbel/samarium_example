@@ -19,6 +19,8 @@ target_link_libraries(example samarium::samarium) # use project
 
 add_custom_target(
     run ALL
-    COMMAND ${CMAKE_CURRENT_BINARY_DIR}/example
+    COMMAND example
+    DEPENDS example
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     USES_TERMINAL
 )
