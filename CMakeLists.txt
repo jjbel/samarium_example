@@ -12,15 +12,24 @@ project(SamariumExample CXX) # Create Project
 
 find_package(samarium CONFIG REQUIRED)
 
-add_executable(example example.cpp) # create an example executable
+file(GLOB_RECURSE files "*.cpp")
+foreach(file ${files})
+    get_filename_component(EXAMPLE_NAME ${file} NAME_WE)
+    add_executable(${EXAMPLE_NAME} ${file})
+    target_compile_features(${EXAMPLE_NAME} PUBLIC cxx_std_20) # set C++ standard
+    target_link_libraries(${EXAMPLE_NAME} samarium::samarium)
+endforeach()
 
-target_compile_features(example PUBLIC cxx_std_20) # set C++ standard
-target_link_libraries(example samarium::samarium) # use project
+# TODO for now not using this, just running it thru python
+if(CURRENT_EXAMPLE)
+    add_custom_target(
+        run ALL
+        COMMAND example
+        DEPENDS example
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        USES_TERMINAL
+    )
+endif()
 
-add_custom_target(
-    run ALL
-    COMMAND example
-    DEPENDS example
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    USES_TERMINAL
-)
+# conan creates its own preset...but cmake gives error deuplicate preset: default
+file(REMOVE CMakeUserPresets.json)
